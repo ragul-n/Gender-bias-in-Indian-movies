@@ -31,10 +31,9 @@ class OpenSubtitles:
         headers = {
             'Api-Key': self.api_key,
         }
-
-        print(params)
+        
         response = requests.get('https://api.opensubtitles.com/api/v1/subtitles', headers=headers, params=params)
-        print(response.json())
+       
         return response.json()["data"]
     
     def download_subtitles_with_file_id(self, file_id):
@@ -46,7 +45,7 @@ class OpenSubtitles:
         data={"file_id":int(file_id)}
 
         response= requests.post("https://api.opensubtitles.com/api/v1/download", headers=headers, data=data)
-        print(response)
+      
         return response.json()
 
     def download_subtitle_with_imdb_id(self, imdb_id, language="en"):
