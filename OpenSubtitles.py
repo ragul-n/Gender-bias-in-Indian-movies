@@ -48,8 +48,7 @@ class OpenSubtitles:
       
         return response.json()
 
-    def download_subtitle_with_imdb_id(self, imdb_id, language="en"):
-        
+    def get_subtitle_file_id(self,imdb_id, language="en", additional_attributes =[]):
         files=self.search_subtitles(params = (
                             ("machine_translated","False"),
                             ("ai_translated","False"),
@@ -58,17 +57,33 @@ class OpenSubtitles:
                         ))
         
         subtitles= pd.DataFrame([file['attributes'] for file in files])
-        subtitles=subtitles[subtitles["language"]==language]
+        if len(subtitles) !=0:
+            subtitles=subtitles[subtitles["language"]==language]
+            print( subtitles.iloc[0])
 
-        file_id= subtitles.iloc[0].files[0]["file_id"]
-        response=self.download_subtitles_with_file_id(file_id)
-        link,file_name=response["link"], response["file_name"]
+            file_id= subtitles.iloc[0].files[0]["file_id"]
+            file_attributes= subtitles.iloc[0][additional_attributes]  if (len(additional_attributes)>0) else None
 
-        #downloading subtitle file
-        response=requests.get(link)
-        open(file_name, "w").write(response.content.decode())
+            return file_id, file_attributes
+        else:
+            return None
 
-        return file_name
+    def download_subtitle_with_imdb_id(self, imdb_id, language="en"):
+        """
+        Downloads the subtitles 
+        """
+        file_id, _ = self.get_subtitle_file_id(imdb_id, language=language)
+        if file_id != None:
+            response=self.download_subtitles_with_file_id(file_id)
+            link,file_name=response["link"], response["file_name"]
+
+            #downloading subtitle file
+            response=requests.get(link)
+            open(str(imdb_id)+"_subtitle", "w").write(response.content.decode())
+
+            return file_name
+        else:
+            return None
 
 
 if __name__ =="__main__":
