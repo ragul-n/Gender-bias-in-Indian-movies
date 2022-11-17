@@ -59,14 +59,18 @@ class OpenSubtitles:
         subtitles= pd.DataFrame([file['attributes'] for file in files])
         if len(subtitles) !=0:
             subtitles=subtitles[subtitles["language"]==language]
-            print( subtitles.iloc[0])
-
-            file_id= subtitles.iloc[0].files[0]["file_id"]
+            if len(subtitles)==0: return None, None
+            
+            try:    
+                file_id= subtitles.iloc[0].files[0]["file_id"]
+            except:
+                print(subtitles)
+                print("len",len(subtitles))
             file_attributes= subtitles.iloc[0][additional_attributes]  if (len(additional_attributes)>0) else None
 
             return file_id, file_attributes
         else:
-            return None
+            return None, None
 
     def download_subtitle_with_imdb_id(self, imdb_id, language="en"):
         """
