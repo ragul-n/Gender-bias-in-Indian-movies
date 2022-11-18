@@ -1,10 +1,11 @@
 from OpenSubtitles import OpenSubtitles
 import pandas as pd
+from tqdm.notebook import tqdm
 
 def get_subtitle_file_id(imdb_ids):
     sub_file_data=[]
 
-    for id in imdb_ids:
+    for id in tqdm(imdb_ids):
         file_id, file_attr=os.get_subtitle_file_id(id[2:], additional_attributes=['from_trusted', 'ai_translated','machine_translated',"language"])
         if file_id !=None:
             file_attr=dict(file_attr)
@@ -14,7 +15,7 @@ def get_subtitle_file_id(imdb_ids):
             
         else:
             sub_file_data.append({"imdb_id":id})
-
+            
         return sub_file_data
 
 if __name__ =="__main__":
