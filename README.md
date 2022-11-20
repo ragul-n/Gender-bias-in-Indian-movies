@@ -5,7 +5,7 @@ The Presence of gender bias in Indian movies is a well-documented phenomenon (se
 Here, I am attempting to study gender bias in movies of other Indian languages and do a comparative analysis (including Hindi movies). 
 
 ## Data Collection
-I am collecting subtitles of Indian movies from OpenSubtitles using thier [API](https://opensubtitles.stoplight.io/docs/opensubtitles-api/e3750fd63a100-getting-started). I am hopeful of getting subtitles for at least 4500 movies, which is already multiple times higher than any other study/research I am aware of.
+I am collecting subtitles of Indian movies from OpenSubtitles using thier [API](https://opensubtitles.stoplight.io/docs/opensubtitles-api/e3750fd63a100-getting-started). I am hopeful of getting subtitles for at least 4500 movies, which is already multiple times higher than any other research on this topic has used.
 
 ## Reference 
 1. [Gender bias, social bias, and representation in Bollywood and Hollywood](https://www.sciencedirect.com/science/article/pii/S266638992100283X?via%3Dihub)
