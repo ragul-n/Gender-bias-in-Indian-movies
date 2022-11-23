@@ -11,7 +11,7 @@ class OpenSubtitles:
         self.username= username
         self.password= password
         self.api_key= api_key
-        self.login()
+        token=self.login()
 
     def login(self):
         headers ={
@@ -21,10 +21,8 @@ class OpenSubtitles:
             
         data = str({"username":self.username,"password":self.password})
 
-
-
         response = requests.post('https://api.opensubtitles.com/api/v1/login',headers=headers, data=data )
-        #return response.json()["token"]
+        return response.json()["token"]
 
     
     def search_subtitles(self, params):
@@ -38,9 +36,10 @@ class OpenSubtitles:
     
     def download_subtitles_with_file_id(self, file_id):
         headers = {
+            "Content-Type": "application/json",
+            "Authorization": f"Bearer {self.token}",
             'Api-key': self.api_key,
         }
-
 
         data={"file_id":int(file_id)}
 
