@@ -7,6 +7,8 @@ Here, I am attempting to study gender bias in movies of other Indian languages a
 ## Data Collection
 I am collecting subtitles of Indian movies from OpenSubtitles using thier [API](https://opensubtitles.stoplight.io/docs/opensubtitles-api/e3750fd63a100-getting-started). I am hopeful of getting subtitles for at least 4500 movies, which is already multiple times higher than any other research on this topic has used.
 
+Click [here](https://drive.google.com/drive/folders/1EWcVuV6pe1gIXlZgKgsLK6rFwujOlap0) to see the dataset. 
+
 ## Reference 
 1. [Gender bias, social bias, and representation in Bollywood and Hollywood](https://www.sciencedirect.com/science/article/pii/S266638992100283X?via%3Dihub)
 2. [Analyzing Gender Stereotyping in Bollywood Movies](https://arxiv.org/pdf/1710.04117.pdf)
