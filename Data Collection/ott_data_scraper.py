@@ -18,21 +18,27 @@ from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
 
 
-def init_driver():
+def init_driver(driver_path="chromedriver"):
     chrome_options = Options()
-    chrome_options.add_experimental_option("prefs", {
-    "profile.default_content_setting_values.notifications": 2
-    })                  
-
+    #     chrome_options.add_experimental_option("prefs", {
+    #     "profile.default_content_setting_values.notifications": 2
+    #     })                  
+    
+    options.headless = True
+    options.add_argument('--no-sandbox')
+    options.add_argument('--disable-dev-shm-usage')
+    options.add_argument('--disable-gpu')
+    options.add_argument('--disable-infobars')
+    
     chrome_options.add_argument("--enable-logging")
     chrome_options.add_argument("--v=1")
-    chrome_options.add_argument("user-data-dir=C:/Users/natar/AppData/Local\Google/Chrome/User Data/Profile 1") 
+    #chrome_options.add_argument("user-data-dir=C:/Users/natar/AppData/Local\Google/Chrome/User Data/Profile 1") 
 
 
     capabilities = DesiredCapabilities.CHROME
     capabilities["goog:loggingPrefs"] = {"performance": "ALL"}
 
-    driver = webdriver.Chrome("C:\DRIVERS\chromedriver.exe",options=chrome_options,desired_capabilities=capabilities)
+    driver = webdriver.Chrome(driver_path, options=chrome_options,desired_capabilities=capabilities)
     driver.implicitly_wait(10)
 
     return driver
